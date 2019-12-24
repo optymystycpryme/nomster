@@ -22,6 +22,9 @@
           <li class="nav-item">
             <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'nav-link' %>
           </li>
+          <li>
+            <%= link_to 'Edit Profile', edit_user_registration_path, class: "nav-link" %>
+          </li>
         <% else %>
           <li class="nav-item">
             <%= link_to 'Sign in', new_user_session_path, class: 'nav-link' %>
@@ -32,7 +35,7 @@
         <% end %>
       </ul>
       <%= simple_form_for :search, url: search_places_path, method: "GET", validate: true, html: { class: "form-inline my-2 my-lg-0"} do |f| %>
-        <%= f.input :name, label: "Search", input_html: { value: "" }, class: "form-control mr-sm-2" %>
+        <%= f.input :name, label: "", placeholder: "Find a place...", input_html: { value: "" }, class: "form-control mr-sm-2" %> |
         <%= f.submit "Search", class: "btn btn-outline-info my-2 my-sm-0" %>
       <% end %>
     </div>
