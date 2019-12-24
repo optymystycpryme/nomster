@@ -1,10 +1,10 @@
 21.times do |place|
   Place.create!(
-    name: "Place to eat # #{place}",
-    address: "#{place} W Main Street, Peoria, AZ 85345",
+    name: "Place to eat # #{place + 1}",
+    address: "#{place + 1 } W Main Street, Peoria, AZ 85345",
     description: "The next best place to eat"
   )
-  puts "Created place #{place}"
+  puts "Created place #{place + 1}"
 end
 
 # User.create!(
