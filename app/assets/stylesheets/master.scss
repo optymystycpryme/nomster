@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css?family=Alatsi|Montserrat&display=swap');
+
+/* Global */
+body {
+  background: image_url('background3.png');
+  font-family: 'Montserrat', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin:0;
+  padding:0;
+}
+h1 {
+  font-family: 'Alatsi', sans-serif;
+}
+
+/* Header */
+.navbar {
+  background: linear-gradient(to top, #000000, #434343);
+  line-height: 45px;
+  box-shadow: 0 2px 4px 2px rgba($color: #000000, $alpha: 0.4);
+  .navbar-brand {
+    font-family: 'Alatsi', sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.3px;
+    font-size: 32px;
+  }
+}
+
+/* Places Page */
+.booyah-box {
+  box-shadow: 0 2px 4px 2px rgba($color: #000000, $alpha: 0.2);
+  background: #fff;
+  border: 1px solid #ccc;
+  border-color: #e4e4e4 #bebebd #bebebd #e4e4e4;
+  margin: 15px 0;
+  padding: 20px;
+}
+
+/* Pagination */
+.page-link {
+  position: relative;
+  display: block;
+  padding: 0.5rem 0.75rem;
+  margin-left: -1px;
+  line-height: 1.25;
+  color: #000 !important;
+  background-color:#fff;
+  border: 1px solid#dee2e6;
+}
+
+.page-item.active .page-link {
+  z-index: 3;
+  color: #1797ab !important;
+  background: linear-gradient(to top, #000000, #434343) !important;
+  border-color: #1797ab !important;
+}
