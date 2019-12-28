@@ -1,10 +1,10 @@
 <div class=" container booyah-box">
-  <h1>Enter Your Place Details</h1>
+  <h1>Edit Your Place</h1>
   <%= simple_form_for @place do |f| %>
-    <%= f.input :name, label: "Place Name" %>
+    <%= f.input :name %>
     <%= f.input :address %>
     <%= f.input :description %>
     <br>
-    <%= f.submit 'Create', class: "btn btn-outline-info" %>
+    <%= f.submit 'Update', class: "btn btn-outline-info" %>
   <% end %>
 </div>
