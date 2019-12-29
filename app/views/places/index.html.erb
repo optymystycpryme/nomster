@@ -1,26 +1,27 @@
 <div class="container">
+  <div class="row card-row">
   <% @places.each do |place| %>
-    <div class="booyah-box">
-      <div class="row">
-        <div class="col-lg-6">
-          <h2><%= link_to place.name, place_path(place) %></h2><hr>
-          <i><%= place.address %></i><br><br>
-          <p><%= place.description %> </p>
-          <% if place.user.present? %>
-            <small>Posted by: <%= place.user.email %></small>
-          <% end %>
-        </div>
-        <div class="col-lg-6 col-md-3">
-          <% if place.photos.present? %>
-            <div class="photos-index float-right">
-              <%= image_tag place.photos.first.picture.to_s, class: 'index-image-size' %>
-            </div>
-          <% end %>
-        </div>
+    <div class="card">
+      <div class="card-img-top">
+        <% if place.photos.present? %>
+          <div class="photos-index">
+            <%= link_to image_tag(place.photos.first.picture.to_s, class: 'index-image-size'), place_path(place) %>
+          </div>
+        <% end %>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title text-center"><%= link_to place.name, place_path(place) %></h3><hr>
+        <i><%= place.address %></i><br><br>
+        <p class="card-text"><%= place.description %> </p>
+        <% if place.user.present? %>
+        <small>Posted by: <%= place.user.username %></small>
+      <% end %>
       </div>
     </div>
     <hr>
   <% end %>
+  </div>
+
   <div class="d-flex justify-content-center">
     <%= will_paginate @places, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
   </div>

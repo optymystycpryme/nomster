@@ -6,6 +6,10 @@ body {
   font-family: 'Montserrat', sans-serif;
 }
 
+.container {
+  display: block;
+}
+
 h1, h2, h3, h4, h5, h6 {
   margin:0;
   padding:0;
@@ -26,11 +30,69 @@ h1 {
 }
 
 input:hover {
-  box-shadow: 0 2px 4px 2px rgba($color: #000000, $alpha: 0.2);
+  box-shadow: 0 2px 4px 2px rgba(0,0,0,0.2);
+}
+
+button,
+.btn,
+input,
+#place_description,
+#photo_caption {
+  border-radius: 0 !important;
+}
+
+#place_name,
+#place_address,
+#place_description,
+#photo_caption,
+form > .btn,
+.buttons {
+  transition: box-shadow 0.5s ease-in-out;
+  &:hover {
+    box-shadow: 0 2px 4px 2px rgba(0,0,0,0.2) !important;
+  }
 }
 
 .flash-notice {
   margin-top: 15px;
+}
+
+.invalid-feedback {
+  color: #ff3333;
+  background-color: #FFEEEE;
+  border-radius: 3px;
+  padding: 2px 8px 2px 8px;
+}
+
+.booyah-box {
+  box-shadow: 0 2px 4px 2px rgba($color: #000000, $alpha: 0.2);
+  background: #fff;
+  border: 1px solid #ccc;
+  border-color: #e4e4e4 #bebebd #bebebd #e4e4e4;
+  margin:0;
+  padding: 20px;
+}
+
+.modal-header {
+  background:#1797ab;
+  font-family: 'Alatsi', sans-serif !important;
+  color: #d6fff6;
+  box-shadow: 0 2px 4px 2px rgba($color: #000000, $alpha: 0.2);
+  .close {
+    color: #fff;
+    &:hover {
+      color: #d6fff6;
+    }
+  }
+}
+
+.modal-body {
+  background: #fff;
+}
+
+.modal-footer {
+  background: #d6fff6;
+  box-shadow: 0 2px 4px 2px rgba($color: #000000, $alpha: 0.2);
 }
 
 /* Header */
@@ -60,13 +122,15 @@ input:hover {
 }
 
 /* Places Page */
-.booyah-box {
-  box-shadow: 0 2px 4px 2px rgba($color: #000000, $alpha: 0.2);
-  background: #fff;
-  border: 1px solid #ccc;
-  border-color: #e4e4e4 #bebebd #bebebd #e4e4e4;
-  margin: 15px 0;
-  padding: 20px;
+.card-row {
+
+}
+
+.card {
+  width: 32.2%;
+  padding: 0px !important;
+  margin: 5px;
+  margin-bottom: 15px;
 }
 
 .index-image-size {
@@ -81,6 +145,11 @@ input:hover {
 /* Places Show Page */
 .show-image-size {
   width: 100%;
+  height: 500px;
+  object-fit: cover;
+  background-position: center;
+  background-size: cover;
+  object-position: 50% 50%;
   box-shadow: 0 2px 4px 2px rgba($color: #000000, $alpha: 0.2);
 }
 
@@ -91,6 +160,12 @@ input:hover {
 #photo_picture {
   box-shadow: none !important;
   cursor: pointer;
+}
+
+.photo-display {
+  min-width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 .show-edit-destroy-btns {
@@ -128,4 +203,22 @@ input:hover {
   color: #1797ab !important;
   background: linear-gradient(to top, #000000, #434343) !important;
   border-color: #1797ab !important;
+}
+
+/* Media Quiries */
+@media screen and (max-width: 1000px) {
+  .card {
+    width: 48.5%;
+    padding: 0px !important;
+    margin: 5px;
+    margin-bottom: 15px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .card {
+    width: 100%;
+    padding: 0px !important;
+    margin-bottom: 15px;
+  }
 }

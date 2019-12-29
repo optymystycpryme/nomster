@@ -3,7 +3,7 @@
   <%= simple_form_for @place do |f| %>
     <%= f.input :name, label: "Place Name" %>
     <%= f.input :address %>
-    <%= f.input :description %>
+    <%= f.input :description, class: "new-place-description" %>
     <br>
     <%= f.submit 'Create', class: "btn btn-outline-info" %>
   <% end %>
