@@ -1,13 +1,24 @@
 <div class="container">
   <% @places.each do |place| %>
     <div class="booyah-box">
-      <h2><%= link_to place.name, place_path(place) %></h2><br>
-      <i><%= place.address %></i><br><br>
-      <p><%= place.description %> </p>
+      <div class="row">
+        <div class="col-lg-6">
+          <h2><%= link_to place.name, place_path(place) %></h2><hr>
+          <i><%= place.address %></i><br><br>
+          <p><%= place.description %> </p>
+          <% if place.user.present? %>
+            <small>Posted by: <%= place.user.email %></small>
+          <% end %>
+        </div>
+        <div class="col-lg-6 col-md-3">
+          <% if place.photos.present? %>
+            <div class="photos-index float-right">
+              <%= image_tag place.photos.first.picture.to_s, class: 'index-image-size' %>
+            </div>
+          <% end %>
+        </div>
+      </div>
     </div>
-    <% if place.user.present? %>
-      <small>Posted by: <%= place.user.email %></small>
-    <% end %>
     <hr>
   <% end %>
   <div class="d-flex justify-content-center">

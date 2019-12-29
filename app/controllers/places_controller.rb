@@ -1,5 +1,5 @@
 class PlacesController < ApplicationController
-  before_action :authenticate_user!, only: %i[new create]
+  before_action :authenticate_user!, only: %i[new create edit update destroy]
 
   def index
     @places = Place.order(:id).paginate(page: params[:page], per_page: 5)
@@ -16,14 +16,22 @@ class PlacesController < ApplicationController
 
   def show
     @place = Place.find(params[:id])
+    @photo = Photo.new
   end
 
   def edit
     @place = Place.find(params[:id])
+    if @place.user != current_user
+      return render plain: "Not allowed", status: :forbidden
+    end
   end
 
   def update
     @place = Place.find(params[:id])
+    if @place.user != current_user
+      return render plain: 'Not Allowed', status: :forbidden
+    end
+
     @place.update_attributes(place_params)
     redirect_to place_path(@place)
   end
