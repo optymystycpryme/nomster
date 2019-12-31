@@ -81,5 +81,8 @@ gem 'devise'
 ### Photo Handling
 gem 'carrierwave', '~> 1.0'
 gem 'carrierwave-aws'
-gem "figaro"
-gem "fog-aws"
+gem 'figaro'
+gem 'fog-aws'
+
+### Map services
+gem 'geocoder'

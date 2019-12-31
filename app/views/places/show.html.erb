@@ -1,53 +1,64 @@
-<div class="container">
-  <div class="card">
+<div class="container show-container">
+  <div class="card show-card-page">
     <% @place.photos.each do |photo| %>
-    <div class="card-img-top">
-      <%= image_tag photo.picture.to_s, class: 'show-image-size' %>
-    </div>
-    <% if photo.caption.present? %>
-      <p class="text-center"><%= photo.caption %></p>
-    <% end %>
-  <% end %>
-  <div class="card-body">
-    <h1 class="card-title"><%= @place.name %></h1>
-    <hr>
-    <i class="card-text"><%= @place.address %></i>
-    <br/><br/>
-    <p class="card-text"><%= @place.description %></p>
-    <hr>
-    <div class="float-left">
-      <button type="button" class="btn btn-dark buttons" data-toggle="modal" data-target="#photo-modal">Add a photo</button>
-    </div>
-    <div  class="float-right show-edit-destroy-btns">
-      <% if current_user && current_user == @place.user %>
-        <%= link_to 'Edit', edit_place_path(@place), class: 'btn btn-dark buttons' %>
-        <%= link_to 'Destroy', place_path(@place),
-        method: :delete,
-        data: {confirm: 'Are you sure you want to delete this?'},
-        class: 'btn btn-danger buttons' %>
+      <div class="card-img-top">
+        <%= image_tag photo.picture.to_s, class: 'show-image-size' %>
+      </div>
+      <% if photo.caption.present? %>
+        <p class="text-center"><%= photo.caption %></p>
       <% end %>
-    </div>
-  </div>
-
-  <!-- Photo Modal -->
-  <div class="modal fade" id="photo-modal" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">Add an image</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+    <% end %>
+    <div class="card-body">
+      <div class="row show-title-div">
+        <h1 class="card-title col-lg-10"><%= @place.name %></h1>
+        <div class="col-lg-2">
+          <button type="button" class="btn btn-block btn-dark buttons" data-toggle="modal" data-target="#photo-modal">Add a photo</button>
         </div>
-        <%= simple_form_for @photo, url: place_photos_path(@place) do |f| %>
-          <div class="modal-body">
-            <%= f.input :caption, label: "Add an image caption..." %>
-            <%= f.input :picture, label: "Choose an image...", class: "picture-upload-button" %>
-          </div>
-          <div class="modal-footer">
-            <%= f.submit "Submit", class: 'btn btn-lg btn-block btn-info modal-submit' %>
-          </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-lg-6">
+          <i class="card-text"><b>Location: </b><%= @place.address %></i>
+          <br/><br/>
+          <p class="card-text"><b>Description: </b><%= @place.description %></p>
+        </div>
+        <div class="col-lg-6">
+          <%= render 'places/maps' %>
+        </div>
+      </div>
+      <hr>
+      <div  class="float-right show-edit-destroy-btns">
+        <% if current_user && current_user == @place.user %>
+          <%= link_to 'Edit', edit_place_path(@place), class: 'btn btn-dark buttons' %>
+          <%= link_to 'Destroy', place_path(@place),
+          method: :delete,
+          data: {confirm: 'Are you sure you want to delete this?'},
+          class: 'btn btn-danger buttons' %>
         <% end %>
+      </div>
+      <small>Posted by: <%= @place.user.username %></small>
+    </div>
+
+    <!-- Photo Modal -->
+    <div class="modal fade" id="photo-modal" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Add an image</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <%= simple_form_for @photo, url: place_photos_path(@place) do |f| %>
+            <div class="modal-body">
+              <%= f.input :caption, label: "Add an image caption..." %>
+              <%= f.input :picture, label: "Choose an image...", class: "picture-upload-button" %>
+            </div>
+            <div class="modal-footer">
+              <%= f.submit "Submit", class: 'btn btn-lg btn-block btn-info modal-submit' %>
+            </div>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>

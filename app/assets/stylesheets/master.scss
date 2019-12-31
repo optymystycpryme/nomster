@@ -1,13 +1,14 @@
 @import url('https://fonts.googleapis.com/css?family=Alatsi|Montserrat&display=swap');
+$base-color: #000;
+$background-color: #222326;
+$background-two: #fff;
+$secondary-color: #00cc00;
+
 
 /* Global */
 body {
-  background: image_url('background3.png');
+  background: $background-color !important;
   font-family: 'Montserrat', sans-serif;
-}
-
-.container {
-  display: block;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -19,7 +20,7 @@ h1 {
 }
 
 .auth-links {
-  color: #1797ab !important;
+  color: $secondary-color !important;
   &:hover {
     text-decoration: none;
     color: #000;
@@ -96,8 +97,12 @@ form > .btn,
 }
 
 /* Header */
+.bg-dark {
+  background-color:#000 !important;
+}
+
 .navbar {
-  background: linear-gradient(to top, #000000, #434343);
+  background-color:#000 !important;
   line-height: 45px;
   box-shadow: 0 2px 4px 2px rgba($color: #000000, $alpha: 0.4);
   .navbar-brand {
@@ -106,7 +111,7 @@ form > .btn,
     letter-spacing: -0.3px;
     font-size: 32px;
     &:hover {
-      color: #1797ab !important;
+      color: $secondary-color !important;
     }
   }
 }
@@ -114,19 +119,40 @@ form > .btn,
 .nav-link {
   &:hover {
     text-decoration: none;
-    color: #1797ab !important;
+    color: $secondary-color !important;
     font-family: 'Alatsi', sans-serif;
     font-weight: bold;
     font-size: 17px;
   }
 }
 
-/* Places Page */
-.card-row {
-
+.search-btn {
+  border: $secondary-color 1px solid !important;
+  color: $secondary-color !important;
+  &:hover {
+    background-color: $secondary-color !important;
+    color: $base-color !important;
+  }
 }
 
-.card {
+/* Places Page */
+.index-container {
+  background: $background-two;
+  margin-top: -25px !important;
+  padding-left: 35px !important;
+  padding-right: 35px !important;
+  padding-top: 25px !important;
+}
+
+.index-card-title {
+  color: $background-color !important;
+  &:hover {
+    text-decoration: none;
+    color: $secondary-color !important;
+  }
+}
+
+.card-index-page {
   width: 32.2%;
   padding: 0px !important;
   margin: 5px;
@@ -135,20 +161,33 @@ form > .btn,
 
 .index-image-size {
   width: 100%;
-  height: auto;
+  min-height: 18vw;
   display: block;
+  object-fit: cover;
+  border-style: none;
   margin-left: auto;
   margin-right: auto;
   box-shadow: 0 2px 4px 2px rgba($color: #000000, $alpha: 0.2);
 }
 
 /* Places Show Page */
+.show-container {
+  background: $background-two;
+  margin-top: -25px !important;
+  padding-left: 35px !important;
+  padding-right: 35px !important;
+  padding-top: 25px !important;
+}
+
+.show-card-page {
+  border-style: none !important;
+}
 .show-image-size {
   width: 100%;
   height: 500px;
   object-fit: cover;
+  border-style: none;
   background-position: center;
-  background-size: cover;
   object-position: 50% 50%;
   box-shadow: 0 2px 4px 2px rgba($color: #000000, $alpha: 0.2);
 }
@@ -168,9 +207,13 @@ form > .btn,
   padding: 0;
 }
 
-.show-edit-destroy-btns {
-  margin-top: -38px;
-  margin-bottom: 35px;
+.show-title-div {
+  margin-bottom: -25px;
+}
+
+#map {
+  height: 300px;
+  // box-shadow: 0 2px 4px 2px rgba($color: #000000, $alpha: 0.2);
 }
 
 /* Authorization Pages */
@@ -195,14 +238,17 @@ form > .btn,
   line-height: 1.25;
   color: #000 !important;
   background-color:#fff;
-  border: 1px solid#dee2e6;
+  border: 1px solid $base-color;
+  &:hover {
+    background-color: $secondary-color !important;
+  }
 }
 
 .page-item.active .page-link {
   z-index: 3;
-  color: #1797ab !important;
+  color: $secondary-color !important;
   background: linear-gradient(to top, #000000, #434343) !important;
-  border-color: #1797ab !important;
+  border-color: $secondary-color !important;
 }
 
 /* Media Quiries */

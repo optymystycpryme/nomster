@@ -1,0 +1,24 @@
+<% if @place.latitude.present? && @place.longitude.present? %>
+  <script>
+    function initMap() {
+      let myLatLng = {lat: <%= @place.latitude %>, lng: <%= @place.longitude %> };
+
+      let map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 12,
+        center: myLatLng
+      });
+
+      let marker = new google.maps.Marker({
+        position: myLatLng,
+        map: map,
+        title: 'Hello World!'
+      });
+    }
+  </script>
+
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap">
+  </script>
+
+  <div id="map"></div>
+<% end %>

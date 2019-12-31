@@ -1,16 +1,16 @@
-<div class="container">
+<div class="container index-container">
   <div class="row card-row">
   <% @places.each do |place| %>
-    <div class="card">
-      <div class="card-img-top">
+    <div class="card card-index-page">
+      <div class="card-img-top d-flex align-items-stretch">
         <% if place.photos.present? %>
-          <div class="photos-index">
+          <div>
             <%= link_to image_tag(place.photos.first.picture.to_s, class: 'index-image-size'), place_path(place) %>
           </div>
         <% end %>
       </div>
       <div class="card-body">
-        <h3 class="card-title text-center"><%= link_to place.name, place_path(place) %></h3><hr>
+        <h2 class="card-title text-center"><%= link_to place.name, place_path(place), class: "index-card-title" %></h2><hr>
         <i><%= place.address %></i><br><br>
         <p class="card-text"><%= place.description %> </p>
         <% if place.user.present? %>

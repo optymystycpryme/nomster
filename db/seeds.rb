@@ -17,7 +17,7 @@ puts "User 2 created"
 10.times do |place|
   Place.create!(
     name: "Place to eat # #{place + 1}",
-    address: "#{place + 1 } W Main Street, Peoria, AZ 85345",
+    address: "9151 W Peoria Rd, Suite 101, Peoria, AZ 85345",
     description: "The # #{place + 1} best place to eat",
     user_id: 1
   )
@@ -26,7 +26,7 @@ end
 
 10.times do |picture|
   Photo.create!(
-    picture: Rails.root.join("app/assets/images/place_images/image#{rand(1..5)}.jpg").open,
+    picture: Rails.root.join("app/assets/images/place_images/image#{picture}.jpg").open,
     caption: "Image # #{picture + 1}",
     user_id: 1,
     place_id: picture + 1
