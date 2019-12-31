@@ -12,15 +12,16 @@
       <div class="row show-title-div">
         <h1 class="card-title col-lg-10"><%= @place.name %></h1>
         <div class="col-lg-2">
-          <button type="button" class="btn btn-block btn-dark buttons" data-toggle="modal" data-target="#photo-modal">Add a photo</button>
+          <button type="button" class="btn btn-block btn-dark buttons add-photo-button" data-toggle="modal" data-target="#photo-modal">Add a photo <i class="fa fa-camera-retro"></i></button>
         </div>
       </div>
       <hr>
       <div class="row">
         <div class="col-lg-6">
+          <i class="fa fa-map-marker"></i>
           <i class="card-text"><b>Location: </b><%= @place.address %></i>
           <br/><br/>
-          <p class="card-text"><b>Description: </b><%= @place.description %></p>
+          <p class="card-text"><b> Description: </b><%= @place.description %></p>
         </div>
         <div class="col-lg-6">
           <%= render 'places/maps' %>

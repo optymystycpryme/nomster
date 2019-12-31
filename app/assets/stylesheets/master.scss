@@ -207,6 +207,12 @@ form > .btn,
   padding: 0;
 }
 
+.add-photo-button:hover {
+  i {
+    color: $secondary-color !important;
+  }
+}
+
 .show-title-div {
   margin-bottom: -25px;
 }

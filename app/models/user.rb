@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_many :places
   has_many :photos
+  has_many :comments
 
   validates :email, presence: true
   validates :username, presence: true, length: { maximum: 55, minimum: 2 }
