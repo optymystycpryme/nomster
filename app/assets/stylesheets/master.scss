@@ -1,8 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Alatsi|Montserrat&display=swap');
 $base-color: #000;
 $background-color: #222326;
-$background-two: #fff;
+$light-color: #fff;
 $secondary-color: #00cc00;
+$soft-green: #d6fff6;
 
 
 /* Global */
@@ -74,28 +75,6 @@ form > .btn,
   padding: 20px;
 }
 
-.modal-header {
-  background:#1797ab;
-  font-family: 'Alatsi', sans-serif !important;
-  color: #d6fff6;
-  box-shadow: 0 2px 4px 2px rgba($color: #000000, $alpha: 0.2);
-  .close {
-    color: #fff;
-    &:hover {
-      color: #d6fff6;
-    }
-  }
-}
-
-.modal-body {
-  background: #fff;
-}
-
-.modal-footer {
-  background: #d6fff6;
-  box-shadow: 0 2px 4px 2px rgba($color: #000000, $alpha: 0.2);
-}
-
 /* Header */
 .bg-dark {
   background-color:#000 !important;
@@ -137,7 +116,7 @@ form > .btn,
 
 /* Places Page */
 .index-container {
-  background: $background-two;
+  background: $light-color;
   margin-top: -25px !important;
   padding-left: 35px !important;
   padding-right: 35px !important;
@@ -159,10 +138,13 @@ form > .btn,
   margin-bottom: 15px;
 }
 
+.card-img-show {
+  display: grid;
+}
+
 .index-image-size {
-  width: 100%;
-  min-height: 18vw;
-  display: block;
+  max-width: 100%;
+  max-height: 100vh;
   object-fit: cover;
   border-style: none;
   margin-left: auto;
@@ -172,7 +154,7 @@ form > .btn,
 
 /* Places Show Page */
 .show-container {
-  background: $background-two;
+  background: $light-color;
   margin-top: -25px !important;
   padding-left: 35px !important;
   padding-right: 35px !important;
@@ -220,6 +202,36 @@ form > .btn,
 #map {
   height: 300px;
   // box-shadow: 0 2px 4px 2px rgba($color: #000000, $alpha: 0.2);
+}
+
+/* Modals */
+/* Show modals */
+.modal-header {
+  background:$secondary-color;
+  font-family: 'Alatsi', sans-serif !important;
+  color: #d6fff6;
+  box-shadow: 0 2px 4px 2px rgba($color: #000000, $alpha: 0.2);
+  .close {
+    color: #fff;
+    &:hover {
+      color: $secondary-color;
+    }
+  }
+}
+
+.modal-body {
+  background: #fff;
+}
+
+.modal-footer {
+  background: $soft-green;
+  box-shadow: 2px 2px 4px 2px rgba($color: #000000, $alpha: 0.2);
+}
+
+.modal-submit {
+  background: $secondary-color !important;
+  border: solid 1px $light-color !important;
+  color: $soft-green !important;
 }
 
 /* Authorization Pages */

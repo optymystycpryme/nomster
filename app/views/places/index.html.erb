@@ -2,7 +2,7 @@
   <div class="row card-row">
   <% @places.each do |place| %>
     <div class="card card-index-page">
-      <div class="card-img-top d-flex align-items-stretch">
+      <div class="card-img-top card-img-show">
         <% if place.photos.present? %>
           <div>
             <%= link_to image_tag(place.photos.first.picture.to_s, class: 'index-image-size'), place_path(place) %>
@@ -14,8 +14,19 @@
         <i><%= place.address %></i><br><br>
         <p class="card-text"><%= place.description %> </p>
         <% if place.user.present? %>
-        <small>Posted by: <%= place.user.username %></small>
-      <% end %>
+          <small>Posted by: <%= place.user.username %></small>
+        <% end %>
+        <% if place.comments.present? %>
+          <div class="card-text">
+            <blockquote>
+              <% if place.comments.last.humanized_rating.present? %>
+                <b><%= place.comments.last.humanized_rating %></b> -
+              <% end %>
+              <%= place.comments.last.message %><br>
+              <small>Posted by: <%= place.comments.last.user.username %></small>
+            </blockquote>
+          </div>
+        <% end %>
       </div>
     </div>
     <hr>
