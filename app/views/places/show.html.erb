@@ -74,10 +74,15 @@
         </div>
       </div>
     </div>
-    <%= simple_form_for @comment, url: place_comments_path(@place) do |f| %>
-      <%= f.input :message %>
-      <%= f.input :rating, as: :select, collection: Comment::RATINGS %>
-      <%= f.submit "Add a Comment", class: 'btn btn-primary' %>
-    <% end %>
+    <div class="row">
+      <div class="col-7">
+        <h3>Share your thoughts on <%= @place.name %></h3><hr>
+        <%= simple_form_for @comment, url: place_comments_path(@place) do |f| %>
+          <%= f.input :message %>
+          <%= f.input :rating, as: :select, collection: Comment::RATINGS %>
+          <%= f.submit "Add a Comment", class: 'btn btn-outline-dark' %>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>

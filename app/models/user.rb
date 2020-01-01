@@ -9,5 +9,5 @@ class User < ApplicationRecord
   has_many :comments
 
   validates :email, presence: true
-  validates :username, presence: true, length: { maximum: 55, minimum: 2 }
+  validates :username, presence: true, length: { maximum: 55 }
 end
