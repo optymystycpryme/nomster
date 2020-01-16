@@ -1,10 +1,17 @@
 <div class=" container booyah-box">
-  <h1>Enter Your Place Details</h1>
-  <%= simple_form_for @place do |f| %>
-    <%= f.input :name, label: "Place Name" %>
-    <%= f.input :address %>
-    <%= f.input :description, class: "new-place-description" %>
-    <br>
-    <%= f.submit 'Create', class: "btn btn-outline-info" %>
-  <% end %>
+  <div class="row">
+    <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-xs-12">
+      <h1>Enter Your Place Details</h1>
+      <%= simple_form_for @place do |f| %>
+        <%= f.input :name, label: "Place Name" %>
+        <%= f.input :address %>
+        <%= f.input :description, class: "new-place-description" %>
+        <br>
+        <%= f.submit 'Create', class: "btn btn-outline-info" %>
+      <% end %>
+    </div>
+    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12">
+      <%= image_tag 'auth-image', class: "auth-image" %>
+    </div>
+  </div>
 </div>

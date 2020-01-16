@@ -10,34 +10,43 @@
     <% end %>
     <div class="card-body">
       <div class="row show-title-div">
-        <h1 class="card-title col-lg-10"><%= @place.name %></h1>
-        <div class="col-lg-2">
+        <h1 class="card-title col-xl-10 col-lg-9 col-md-8 col-sm-12 col-xs-12"><%= @place.name %></h1>
+        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-12 col-xs-12">
           <button type="button" class="btn btn-block btn-dark buttons add-photo-button" data-toggle="modal" data-target="#photo-modal">Add a photo <i class="fa fa-camera-retro"></i></button>
         </div>
       </div>
       <hr>
       <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-5 col-lg-5 col-md-5 show-row-details">
           <small>Posted by: <%= @place.user.username %></small>
           <i class="fa fa-map-marker"></i>
           <i class="card-text"><b>Location: </b><%= @place.address %></i>
           <br/><br/>
           <p class="card-text"><b> Description: </b><%= @place.description %></p>
-          <h4>Comments</h4>
-          <% @place.comments.each do |comment| %>
-            <div>
-              <blockquote>
-                <% if comment.humanized_rating.present? %>
-                  <b><%= comment.rating %></b> -
-                <% end %>
-                <%= comment.message %>
-                <small><%= comment.user.username %></small>
-              </blockquote>
-            </div>
-          <% end %>
+          <%= render 'places/map' %>
         </div>
-        <div class="col-lg-6">
-          <%= render 'places/maps' %>
+        <div class="col-xl-7 col-lg-7 col-md-7">
+          <div class="comment-show-div">
+            <h4>What the Foodster think...</h4><hr>
+            <div class="comment-message-div">
+              <% @place.comments.each do |comment| %>
+                <blockquote>
+                  <span>Foodster <b><%= comment.user.username %></b> says:</span>
+                  <br>
+                  <%= comment.message %><br>
+                  <% if comment.humanized_rating.present? %>
+                    <b><%= comment.rating %></b>
+                  <% end %>
+                </blockquote>
+              <% end %>
+            </div>
+            <h4>Share your thoughts on <%= @place.name %></h4><hr>
+            <%= simple_form_for @comment, url: place_comments_path(@place) do |f| %>
+              <%= f.input :message %>
+              <%= f.input :rating, as: :select, collection: Comment::RATINGS %>
+              <%= f.submit "Add a Comment", class: 'btn btn-outline-dark' %>
+            <% end %>
+          </div>
         </div>
       </div>
       <hr>
@@ -74,15 +83,6 @@
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-7">
-        <h3>Share your thoughts on <%= @place.name %></h3><hr>
-        <%= simple_form_for @comment, url: place_comments_path(@place) do |f| %>
-          <%= f.input :message %>
-          <%= f.input :rating, as: :select, collection: Comment::RATINGS %>
-          <%= f.submit "Add a Comment", class: 'btn btn-outline-dark' %>
-        <% end %>
-      </div>
     </div>
   </div>
 </div>

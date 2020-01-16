@@ -1,13 +1,49 @@
-<div class="container">
-  <% @places.each do |place| %>
-    <div class="booyah-box">
-      <h1><%= place.name %></h1>
-      <i><%= place.address %></i><br><br>
-      <p><%= place.description %> </p>
+<div class="container index-container">
+  <% if !@places.present? %>
+    <h2>It seems as though that place can't be found, please feel free to create it below...</h2>
+    <%= link_to new_place_path, class: "nav-link" do %>
+      <i class="fa fa-plus-circle"></i>
+      Add a New Place
+    <% end %>
+  <% else %>
+    <h2>Hopefully you found what you're looking for...</h2>
+    <div class="row justify-content-center">
+      <% @places.each do |place| %>
+        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+          <div class="card card-index-page">
+            <div class="card-img-top card-img-show">
+              <% if place.photos.present? %>
+                <div>
+                  <%= link_to image_tag(place.photos.first.picture.to_s, class: 'index-image-size'), place_path(place) %>
+                </div>
+              <% end %>
+            </div>
+            <div class="card-body">
+              <h2 class="card-title text-center"><%= link_to place.name, place_path(place), class: "index-card-title" %></h2><hr>
+              <i><%= place.address %></i><br><br>
+              <p class="card-text"><%= place.description %> </p>
+              <% if place.user.present? %>
+                <small>Posted by: <%= place.user.username %></small>
+              <% end %>
+              <% if place.comments.present? %>
+                <div class="card-text">
+                  <blockquote>
+                    <% if place.comments.last.humanized_rating.present? %>
+                      <b><%= place.comments.last.humanized_rating %></b> -
+                    <% end %>
+                    <%= place.comments.last.message %><br>
+                    <small>Posted by: <%= place.comments.last.user.username %></small>
+                  </blockquote>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
     </div>
-    <hr>
+
+    <div class="d-flex justify-content-center">
+      <%= will_paginate @places, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+    </div>
   <% end %>
-  <div class="d-flex justify-content-center">
-    <%= will_paginate @places, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
-  </div>
 </div>

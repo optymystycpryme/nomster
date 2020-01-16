@@ -1,4 +1,39 @@
 <div class="container index-container">
+  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner" role="listbox">
+      <div class="carousel-item active">
+        <%= image_tag "place_images/image6.jpg", class: "d-block img-fluid" %>
+        <div class="carousel-caption d-none d-md-block">
+          <h3>Find the best food places...</h3>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <%= image_tag "place_images/image2.jpg", class: "d-block img-fluid" %>
+        <div class="carousel-caption d-none d-md-block">
+          <h3>Be a foodster, post a place...</h3>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <%= image_tag "place_images/image4.jpg", class: "d-block img-fluid" %>
+        <div class="carousel-caption d-none d-md-block">
+          <h3>See what your friends are saying...</h3>
+        </div>
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
   <% if !@places.present? %>
     <h2>Welcome to Foodster, please feel free to add a place...</h2>
     <%= link_to new_place_path, class: "nav-link" do %>
@@ -6,37 +41,56 @@
       Add a New Place
     <% end %>
   <% else %>
-    <div class="row card-row">
+    <div class="row justify-content-center">
       <% @places.each do |place| %>
-        <div class="card card-index-page">
-          <div class="card-img-top card-img-show">
-            <% if place.photos.present? %>
-              <div>
-                <%= link_to image_tag(place.photos.first.picture.to_s, class: 'index-image-size'), place_path(place) %>
-              </div>
-            <% end %>
-          </div>
-          <div class="card-body">
-            <h2 class="card-title text-center"><%= link_to place.name, place_path(place), class: "index-card-title" %></h2><hr>
-            <i><%= place.address %></i><br><br>
-            <p class="card-text"><%= place.description %> </p>
-            <% if place.user.present? %>
-              <small>Posted by: <%= place.user.username %></small>
-            <% end %>
+        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+          <div class="card card-index-page">
+            <div class="card-img-top card-img-show">
+              <% if place.photos.present? %>
+                <div>
+                  <%= link_to image_tag(place.photos.first.picture.to_s, class: 'index-image-size'), place_path(place) %>
+                </div>
+              <% end %>
+            </div>
             <% if place.comments.present? %>
-              <div class="card-text">
-                <blockquote>
-                  <% if place.comments.last.humanized_rating.present? %>
-                    <b><%= place.comments.last.humanized_rating %></b> -
-                  <% end %>
-                  <%= place.comments.last.message %><br>
-                  <small>Posted by: <%= place.comments.last.user.username %></small>
-                </blockquote>
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                  <div class="card-body">
+                    <h2 class="card-title text-center"><%= link_to place.name, place_path(place), class: "index-card-title" %></h2><hr>
+                    <i><%= place.address %></i><br><br>
+                    <p class="card-text"><%= place.description %> </p>
+                    <% if place.user.present? %>
+                      <small>Posted by: <%= place.user.username %></small>
+                    <% end %>
+                    <button onclick="flip()">flip the card</button>
+                  </div>
+                </div>
+                <div class="flip-card-back">
+                  <div class="card-body">
+                    <div class="card-text">
+                      <blockquote>
+                        <% if place.comments.last.humanized_rating.present? %>
+                          <b><%= place.comments.last.humanized_rating %></b> -
+                        <% end %>
+                        <%= place.comments.last.message %><br>
+                        <small>Posted by: <%= place.comments.last.user.username %></small>
+                      </blockquote>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% else %>
+              <div class="card-body">
+                <h2 class="card-title text-center"><%= link_to place.name, place_path(place), class: "index-card-title" %></h2><hr>
+                <i><%= place.address %></i><br><br>
+                <p class="card-text"><%= place.description %> </p>
+                <% if place.user.present? %>
+                  <small>Posted by: <%= place.user.username %></small>
+                <% end %>
               </div>
             <% end %>
           </div>
         </div>
-        <hr>
       <% end %>
     </div>
 

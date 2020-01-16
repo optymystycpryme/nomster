@@ -17,3 +17,7 @@
 //= require popper
 //= require bootstrap-sprockets
 //= require_tree .
+
+function flip() {
+  $('.card-index-page').toggleClass('flipped');
+}
