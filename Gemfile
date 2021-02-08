@@ -79,7 +79,7 @@ gem 'simple_form'
 gem 'devise'
 
 ### Photo Handling
-gem 'carrierwave', '~> 1.0'
+gem 'carrierwave', '~> 1.3'
 gem 'carrierwave-aws'
 gem 'figaro'
 gem 'fog-aws'
